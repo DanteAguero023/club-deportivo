@@ -38,6 +38,27 @@ Si la API no está corriendo, las páginas de "Datos API" y "Gestión" igual
 cargan, pero muestran un mensaje de error en vez del catálogo de
 actividades.
 
+## Tema oscuro y accesibilidad
+
+- **Tema claro/oscuro**: botón 🌙/☀️ en la barra superior. Se guarda en
+  LocalStorage y, la primera vez, respeta el tema del sistema operativo
+  (`prefers-color-scheme`). Los colores de marca (burdeo y hunter) se
+  mantienen en ambos temas para fondos sólidos (navbar, botones, badges);
+  para texto sobre el fondo general se usan variantes pastel de esos
+  mismos colores en modo oscuro, así se conserva el contraste.
+- **Menú**: la navegación vive en un drawer lateral, abierto con el botón
+  hamburguesa. Se cierra al elegir una sección, al hacer click fuera o con
+  la tecla Escape.
+- **Splash screen**: se muestra ~1.8 s solo en la primera visita de la
+  sesión del navegador (se recuerda con `sessionStorage`, no reaparece si
+  recargas con F5).
+- **Accesibilidad**: enlace "Saltar al contenido principal" (visible al
+  navegar con Tab), foco visible en todo elemento interactivo, atributos
+  `aria-invalid`/`aria-describedby` en los campos del formulario con error,
+  `aria-label` en los botones de la tabla de socios, y soporte de
+  `prefers-reduced-motion` para quienes desactivan animaciones en su
+  sistema.
+
 ## Uso de IA
 
 Para este trabajo usé Claude (Claude.ai y Claude Code) como apoyo durante el
@@ -63,6 +84,10 @@ Lo que aprendí trabajando así:
 - **Manejo de estados de una petición fetch**: separar explícitamente
   "cargando", "error" y "datos" para que la interfaz siempre le muestre
   algo coherente al usuario, sin importar si la API está arriba o no.
+- **Accesibilidad de teclado**: un skip-link que apunta a `#contenido` no
+  mueve el foco si ese elemento no es enfocable por defecto; hay que
+  agregarle `tabIndex={-1}` para que el salto realmente funcione con
+  teclado, no solo visualmente.
 
 ## Dónde está cada requisito
 
@@ -78,3 +103,7 @@ Lo que aprendí trabajando así:
 | Listado con props y cruce de datos con la API | [src/components/ListaSocios.jsx](src/components/ListaSocios.jsx) |
 | Eliminar con confirmación (`window.confirm`) | [src/pages/Gestion.jsx](src/pages/Gestion.jsx) (función `eliminarSocio`) |
 | Paleta de colores y layout Flexbox/Grid | [src/index.css](src/index.css), [src/App.css](src/App.css) |
+| Tema claro/oscuro | [src/index.css](src/index.css) (variables), [src/App.jsx](src/App.jsx) (estado y persistencia) |
+| Menú drawer con botón hamburguesa | [src/components/Navbar.jsx](src/components/Navbar.jsx) |
+| Splash screen (primera visita) | [src/components/SplashScreen.jsx](src/components/SplashScreen.jsx), [src/App.jsx](src/App.jsx) |
+| Accesibilidad (skip link, focus, aria, reduced motion) | [src/index.css](src/index.css), [src/App.jsx](src/App.jsx), [src/components/FormularioSocio.jsx](src/components/FormularioSocio.jsx), [src/components/ListaSocios.jsx](src/components/ListaSocios.jsx) |
