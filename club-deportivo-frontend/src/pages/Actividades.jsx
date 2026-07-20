@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import ActividadCard from '../components/ActividadCard.jsx'
-
-const API_URL = 'http://127.0.0.1:8000/api/actividades'
+import { API_URL, obtenerActividades } from '../servicios/api.js'
 
 function Actividades() {
   const [actividades, setActividades] = useState([])
@@ -15,13 +14,7 @@ function Actividades() {
   // Array de dependencias vacío: solo queremos pedir los datos una vez,
   // al montar la página (no en cada render).
   useEffect(() => {
-    fetch(API_URL)
-      .then((respuesta) => {
-        if (!respuesta.ok) {
-          throw new Error(`Error ${respuesta.status} al consultar la API`)
-        }
-        return respuesta.json()
-      })
+    obtenerActividades()
       .then((datos) => setActividades(datos.actividades))
       .catch((err) => setError(err.message))
       .finally(() => setCargando(false))

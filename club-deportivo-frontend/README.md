@@ -38,6 +38,17 @@ Si la API no está corriendo, las páginas de "Actividades" y "Gestión" igual
 cargan, pero muestran un mensaje de error en vez del catálogo de
 actividades.
 
+## Modo demo (para presentar sin la API)
+
+El sitio publicado en un hosting estático no tiene acceso a la API (que
+corre en `localhost`). Presionando **Ctrl+Shift+D** en cualquier página se
+activa un modo demo que simula la respuesta de la API con los mismos datos
+que entrega `main.py`, para poder mostrar el flujo completo (carga,
+catálogo, formulario, CRUD) en una presentación. El mismo atajo lo
+desactiva. Mientras está activo se ve un badge "MODO DEMO" abajo a la
+izquierda; el estado se guarda en LocalStorage, así que sobrevive a un F5.
+Ver `src/servicios/api.js`.
+
 ## Tema oscuro y accesibilidad
 
 - **Tema claro/oscuro**: botón 🌙/☀️ en la barra superior. Se guarda en

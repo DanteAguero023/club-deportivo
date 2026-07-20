@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import FormularioSocio from '../components/FormularioSocio.jsx'
 import ListaSocios from '../components/ListaSocios.jsx'
+import { API_URL, obtenerActividades } from '../servicios/api.js'
 
-const API_URL = 'http://127.0.0.1:8000/api/actividades'
 const CLAVE_LOCALSTORAGE = 'socios'
 
 // Lazy initializer: la función solo se ejecuta en el primer render, así
@@ -33,13 +33,7 @@ function Gestion() {
 
   // Se piden las actividades solo una vez al montar, para llenar el selector del formulario.
   useEffect(() => {
-    fetch(API_URL)
-      .then((respuesta) => {
-        if (!respuesta.ok) {
-          throw new Error(`Error ${respuesta.status} al consultar la API`)
-        }
-        return respuesta.json()
-      })
+    obtenerActividades()
       .then((datos) => setActividades(datos.actividades))
       .catch((err) => setErrorActividades(err.message))
       .finally(() => setCargandoActividades(false))

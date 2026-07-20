@@ -5,6 +5,7 @@ import SplashScreen from './components/SplashScreen.jsx'
 import Inicio from './pages/Inicio.jsx'
 import Gestion from './pages/Gestion.jsx'
 import Actividades from './pages/Actividades.jsx'
+import { alternarModoDemo, esModoDemo } from './servicios/api.js'
 import './App.css'
 
 // Lazy initializer: si el usuario ya eligió un tema antes, lo respetamos;
@@ -44,6 +45,23 @@ function App() {
     setTema((actual) => (actual === 'oscuro' ? 'claro' : 'oscuro'))
   }
 
+  // Atajo para presentaciones sin la API real (ej. el sitio subido a un
+  // hosting estático): Ctrl+Shift+D prende/apaga el modo demo y recarga la
+  // página, para que Actividades y Gestión vuelvan a pedir los datos ya con
+  // el modo nuevo. Se suscribe una sola vez y se limpia al desmontar.
+  useEffect(() => {
+    function manejarAtajo(evento) {
+      if (evento.ctrlKey && evento.shiftKey && evento.key.toLowerCase() === 'd') {
+        evento.preventDefault()
+        alternarModoDemo()
+        window.location.reload()
+      }
+    }
+
+    window.addEventListener('keydown', manejarAtajo)
+    return () => window.removeEventListener('keydown', manejarAtajo)
+  }, [])
+
   if (mostrarSplash) {
     return <SplashScreen />
   }
@@ -67,6 +85,7 @@ function App() {
       <footer className="footer">
         <p>Club Deportivo Puerto Aysén — Trabajo académico, INACAP TI3V31</p>
       </footer>
+      {esModoDemo() && <div className="badge-modo-demo">MODO DEMO</div>}
     </BrowserRouter>
   )
 }
