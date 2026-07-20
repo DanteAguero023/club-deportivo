@@ -5,6 +5,17 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Club Deportivo Puerto Aysén</title>
+    <script>
+      // Aplica el tema guardado antes de pintar la página, para que no se
+      // vea un parpadeo del tema claro justo antes de cambiar a oscuro.
+      (function () {
+        var tema = localStorage.getItem('tema')
+        if (!tema) {
+          tema = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'oscuro' : 'claro'
+        }
+        document.documentElement.setAttribute('data-tema', tema)
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>

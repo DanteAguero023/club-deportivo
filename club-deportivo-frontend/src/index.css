@@ -1,18 +1,40 @@
 :root {
-  --burdeo: #6d1a2e; /* color primario: navbar, títulos, botones principales */
-  --burdeo-oscuro: #4e1221; /* hover del primario */
-  --hunter: #355e3b; /* color secundario: acentos, botón guardar, badges "disponible" */
-  --hunter-oscuro: #24422a; /* hover del secundario */
-  --crema: #f6f1eb; /* fondo general */
-  --blanco: #ffffff; /* fondo de cards */
+  /* Colores de marca: burdeo y hunter siempre llevan texto blanco encima
+     (navbar, botones, badges), así que no cambian entre temas. */
+  --burdeo: #6d1a2e;
+  --burdeo-oscuro: #4e1221;
+  --hunter: #355e3b;
+  --hunter-oscuro: #24422a;
+  --blanco: #ffffff;
+
+  /* Estos sí se invierten según el tema (ver el bloque [data-tema="oscuro"] abajo):
+     --titulo/--acento son variantes pastel de burdeo/hunter para usarse como texto
+     sobre --fondo/--superficie, donde el tono sólido perdería contraste en oscuro. */
+  --fondo: #f6f1eb;
+  --superficie: #ffffff;
   --texto: #2b2b2b;
-  --gris-borde: #d9d2c9;
-  --error: #b3261e; /* estados de error */
+  --borde: #d9d2c9;
+  --borde-fuerte: #c9c0b3;
+  --titulo: #6d1a2e;
+  --acento: #355e3b;
+  --error: #b3261e;
 
   font: 16px/1.5 system-ui, 'Segoe UI', Roboto, sans-serif;
   color-scheme: light;
   color: var(--texto);
-  background: var(--crema);
+  background: var(--fondo);
+}
+
+:root[data-tema='oscuro'] {
+  --fondo: #1c1517;
+  --superficie: #2a2023;
+  --texto: #ece5e0;
+  --borde: #4a3d40;
+  --borde-fuerte: #5c4d51;
+  --titulo: #e5a3b1;
+  --acento: #9ec9a6;
+  --error: #f2b8b5;
+  color-scheme: dark;
 }
 
 * {
@@ -21,6 +43,7 @@
 
 body {
   margin: 0;
+  transition: background-color 0.2s, color 0.2s;
 }
 
 #root {
@@ -32,7 +55,7 @@ body {
 h1,
 h2,
 h3 {
-  color: var(--burdeo);
+  color: var(--titulo);
   margin: 0 0 12px;
 }
 
@@ -45,7 +68,7 @@ main {
 }
 
 a {
-  color: var(--burdeo);
+  color: var(--titulo);
 }
 
 button {
