@@ -20,6 +20,10 @@ function Gestion() {
   const [cargandoActividades, setCargandoActividades] = useState(true)
   const [errorActividades, setErrorActividades] = useState(null)
 
+  useEffect(() => {
+    document.title = 'Gestión | Club Deportivo Puerto Aysén'
+  }, [])
+
   // Este es el useEffect que persiste los datos: cada vez que "socios" cambia
   // (crear, editar o eliminar) lo volvemos a guardar en LocalStorage. Por eso
   // depende de [socios] y no de un array vacío.

@@ -256,3 +256,33 @@
   flex-direction: column;
   gap: 28px;
 }
+
+.hero {
+  text-align: center;
+  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.hero-descripcion {
+  max-width: 640px;
+  font-size: 1.05rem;
+}
+
+.hero-contador {
+  color: var(--hunter);
+}
+
+.hero-acciones {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hero-acciones .boton {
+  text-decoration: none;
+  display: inline-block;
+}

@@ -8,6 +8,10 @@ function DatosApi() {
   const [cargando, setCargando] = useState(true)
   const [error, setError] = useState(null)
 
+  useEffect(() => {
+    document.title = 'Datos API | Club Deportivo Puerto Aysén'
+  }, [])
+
   // Array de dependencias vacío: solo queremos pedir los datos una vez,
   // al montar la página (no en cada render).
   useEffect(() => {
