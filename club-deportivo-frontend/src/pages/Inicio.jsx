@@ -32,7 +32,7 @@ function Inicio() {
         <Link to="/gestion" className="boton boton-burdeo">
           Ir a Gestión de socios
         </Link>
-        <Link to="/datos-api" className="boton boton-hunter">
+        <Link to="/actividades" className="boton boton-hunter">
           Ver actividades
         </Link>
       </div>

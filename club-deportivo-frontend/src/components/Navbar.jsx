@@ -84,8 +84,8 @@ function Navbar({ tema, onCambiarTema }) {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/datos-api" onClick={cerrarDrawer}>
-                Datos API
+              <NavLink to="/actividades" onClick={cerrarDrawer}>
+                Actividades
               </NavLink>
             </li>
           </ul>

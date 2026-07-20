@@ -3,13 +3,13 @@ import ActividadCard from '../components/ActividadCard.jsx'
 
 const API_URL = 'http://127.0.0.1:8000/api/actividades'
 
-function DatosApi() {
+function Actividades() {
   const [actividades, setActividades] = useState([])
   const [cargando, setCargando] = useState(true)
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    document.title = 'Datos API | Club Deportivo Puerto Aysén'
+    document.title = 'Actividades | Club Deportivo Puerto Aysén'
   }, [])
 
   // Array de dependencias vacío: solo queremos pedir los datos una vez,
@@ -51,4 +51,4 @@ function DatosApi() {
   )
 }
 
-export default DatosApi
+export default Actividades

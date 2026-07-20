@@ -34,7 +34,7 @@ hermano, no incluido en esta carpeta).
    ```
    Por defecto queda en `http://localhost:5173` (o el siguiente puerto libre).
 
-Si la API no está corriendo, las páginas de "Datos API" y "Gestión" igual
+Si la API no está corriendo, las páginas de "Actividades" y "Gestión" igual
 cargan, pero muestran un mensaje de error en vez del catálogo de
 actividades.
 
@@ -95,7 +95,7 @@ Lo que aprendí trabajando así:
 |---|---|
 | Rutas sin recarga (react-router-dom) | [src/App.jsx](src/App.jsx) |
 | Navbar con NavLink y estado activo | [src/components/Navbar.jsx](src/components/Navbar.jsx) |
-| Consumo de API con estados de carga/error | [src/pages/DatosApi.jsx](src/pages/DatosApi.jsx) |
+| Consumo de API con estados de carga/error | [src/pages/Actividades.jsx](src/pages/Actividades.jsx) |
 | Componente con props (catálogo) | [src/components/ActividadCard.jsx](src/components/ActividadCard.jsx) |
 | CRUD con LocalStorage | [src/pages/Gestion.jsx](src/pages/Gestion.jsx) |
 | useEffect justificado (persistencia) | [src/pages/Gestion.jsx](src/pages/Gestion.jsx) (líneas del `useEffect` de `localStorage.setItem`) |

@@ -4,7 +4,7 @@ import Navbar from './components/Navbar.jsx'
 import SplashScreen from './components/SplashScreen.jsx'
 import Inicio from './pages/Inicio.jsx'
 import Gestion from './pages/Gestion.jsx'
-import DatosApi from './pages/DatosApi.jsx'
+import Actividades from './pages/Actividades.jsx'
 import './App.css'
 
 // Lazy initializer: si el usuario ya eligió un tema antes, lo respetamos;
@@ -61,7 +61,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Inicio />} />
           <Route path="/gestion" element={<Gestion />} />
-          <Route path="/datos-api" element={<DatosApi />} />
+          <Route path="/actividades" element={<Actividades />} />
         </Routes>
       </main>
       <footer className="footer">
