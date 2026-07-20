@@ -1,19 +1,21 @@
 // La API entrega su propio campo "imagen" (un placeholder gris con el nombre
 // en texto), así que en vez de usarlo mostramos una foto real de stock según
-// la actividad, buscada por palabra clave en LoremFlickr. Si el nombre no
-// está en el mapa (por ejemplo, una actividad nueva en la API), se usa la
-// categoría como palabra de búsqueda.
+// la actividad, buscada por palabra clave en LoremFlickr. "lock" fija siempre
+// la misma foto (elegida a mano) en vez de una aleatoria distinta en cada
+// carga, que a veces no tenía nada que ver con el deporte buscado. Si el
+// nombre no está en el mapa (por ejemplo, una actividad nueva en la API), se
+// usa la categoría como palabra de búsqueda, sin foto fija.
 const IMAGEN_POR_ACTIVIDAD = {
-  Fútbol: 'soccer',
-  Básquetbol: 'basketball',
-  Vóleibol: 'volleyball',
-  Natación: 'swimmer',
-  Tenis: 'tennis',
+  Fútbol: 'soccer?lock=4',
+  Básquetbol: 'basketball,court?lock=2',
+  Vóleibol: 'volleyball?lock=1',
+  Natación: 'swimmer?lock=3',
+  Tenis: 'tennis?lock=2',
 }
 
 function obtenerImagenActividad(nombre, categoria) {
-  const palabraClave = IMAGEN_POR_ACTIVIDAD[nombre] ?? categoria ?? 'sport'
-  return `https://loremflickr.com/400/300/${encodeURIComponent(palabraClave)}`
+  const busqueda = IMAGEN_POR_ACTIVIDAD[nombre] ?? encodeURIComponent(categoria ?? 'sport')
+  return `https://loremflickr.com/400/300/${busqueda}`
 }
 
 // Card que muestra una actividad recibida desde la API. Props simples, sin estado propio.

@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Carrusel from '../components/Carrusel.jsx'
 
+// lock=N fija siempre la misma foto para esa palabra clave (en vez de una
+// aleatoria distinta en cada carga), elegida a mano para que se vea bien.
 const IMAGENES_CARRUSEL = [
-  { src: 'https://loremflickr.com/1200/500/soccer,team', alt: 'Equipo jugando un partido de fútbol' },
-  { src: 'https://loremflickr.com/1200/500/basketball,court', alt: 'Partido de básquetbol en una cancha techada' },
-  { src: 'https://loremflickr.com/1200/500/swimmer', alt: 'Persona nadando en una piscina' },
+  { src: 'https://loremflickr.com/1200/500/tennis?lock=2', alt: 'Jugadora de tenis en la cancha' },
+  { src: 'https://loremflickr.com/1200/500/basketball,court?lock=2', alt: 'Partido de básquetbol en una cancha' },
+  { src: 'https://loremflickr.com/1200/500/swimmer?lock=3', alt: 'Persona nadando en una piscina' },
 ]
 
 function contarSociosGuardados() {
