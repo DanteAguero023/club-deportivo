@@ -79,7 +79,7 @@ function Gestion() {
 
       {cargandoActividades && <p>Cargando actividades disponibles...</p>}
       {errorActividades && (
-        <p className="mensaje-error">
+        <p className="mensaje-error" role="alert">
           No se pudo conectar con la API: {errorActividades}. Verifica que el
           servidor FastAPI esté corriendo en {API_URL}.
         </p>

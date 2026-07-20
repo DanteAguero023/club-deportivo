@@ -31,10 +31,18 @@ function ListaSocios({ socios, actividades, onEditar, onEliminar }) {
             <td>{nombreActividad(socio.actividadId)}</td>
             <td>{socio.fechaInscripcion}</td>
             <td className="acciones-tabla">
-              <button className="boton boton-burdeo" onClick={() => onEditar(socio)}>
+              <button
+                className="boton boton-burdeo"
+                onClick={() => onEditar(socio)}
+                aria-label={`Editar a ${socio.nombre}`}
+              >
                 Editar
               </button>
-              <button className="boton boton-secundario" onClick={() => onEliminar(socio.id)}>
+              <button
+                className="boton boton-secundario"
+                onClick={() => onEliminar(socio.id)}
+                aria-label={`Eliminar a ${socio.nombre}`}
+              >
                 Eliminar
               </button>
             </td>

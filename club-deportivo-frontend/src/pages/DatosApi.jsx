@@ -34,7 +34,7 @@ function DatosApi() {
       {cargando && <p>Cargando actividades...</p>}
 
       {error && (
-        <p className="mensaje-error">
+        <p className="mensaje-error" role="alert">
           No se pudo conectar con la API: {error}. Verifica que el servidor
           FastAPI esté corriendo en {API_URL}.
         </p>

@@ -62,8 +62,19 @@ function FormularioSocio({ actividades, onGuardar, socioEditando, onCancelar }) 
     <form className="formulario-socio" onSubmit={manejarEnvio} noValidate>
       <div className="campo">
         <label htmlFor="nombre">Nombre</label>
-        <input id="nombre" name="nombre" value={valores.nombre} onChange={manejarCambio} />
-        {errores.nombre && <p className="error-campo">{errores.nombre}</p>}
+        <input
+          id="nombre"
+          name="nombre"
+          value={valores.nombre}
+          onChange={manejarCambio}
+          aria-invalid={Boolean(errores.nombre)}
+          aria-describedby={errores.nombre ? 'nombre-error' : undefined}
+        />
+        {errores.nombre && (
+          <p id="nombre-error" className="error-campo">
+            {errores.nombre}
+          </p>
+        )}
       </div>
 
       <div className="campo">
@@ -74,19 +85,44 @@ function FormularioSocio({ actividades, onGuardar, socioEditando, onCancelar }) 
           value={valores.rut}
           onChange={manejarCambio}
           placeholder="12345678-9"
+          aria-invalid={Boolean(errores.rut)}
+          aria-describedby={errores.rut ? 'rut-error' : undefined}
         />
-        {errores.rut && <p className="error-campo">{errores.rut}</p>}
+        {errores.rut && (
+          <p id="rut-error" className="error-campo">
+            {errores.rut}
+          </p>
+        )}
       </div>
 
       <div className="campo">
         <label htmlFor="email">Email</label>
-        <input id="email" name="email" type="email" value={valores.email} onChange={manejarCambio} />
-        {errores.email && <p className="error-campo">{errores.email}</p>}
+        <input
+          id="email"
+          name="email"
+          type="email"
+          value={valores.email}
+          onChange={manejarCambio}
+          aria-invalid={Boolean(errores.email)}
+          aria-describedby={errores.email ? 'email-error' : undefined}
+        />
+        {errores.email && (
+          <p id="email-error" className="error-campo">
+            {errores.email}
+          </p>
+        )}
       </div>
 
       <div className="campo">
         <label htmlFor="actividadId">Actividad</label>
-        <select id="actividadId" name="actividadId" value={valores.actividadId} onChange={manejarCambio}>
+        <select
+          id="actividadId"
+          name="actividadId"
+          value={valores.actividadId}
+          onChange={manejarCambio}
+          aria-invalid={Boolean(errores.actividadId)}
+          aria-describedby={errores.actividadId ? 'actividad-error' : undefined}
+        >
           <option value="">Selecciona una actividad</option>
           {actividades.map((actividad) => (
             <option key={actividad.id} value={actividad.id} disabled={!actividad.disponible}>
@@ -94,7 +130,11 @@ function FormularioSocio({ actividades, onGuardar, socioEditando, onCancelar }) 
             </option>
           ))}
         </select>
-        {errores.actividadId && <p className="error-campo">{errores.actividadId}</p>}
+        {errores.actividadId && (
+          <p id="actividad-error" className="error-campo">
+            {errores.actividadId}
+          </p>
+        )}
       </div>
 
       <div className="acciones-formulario">

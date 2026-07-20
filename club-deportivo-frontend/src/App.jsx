@@ -50,8 +50,14 @@ function App() {
 
   return (
     <BrowserRouter>
+      {/* Permite saltar el menú con teclado/lector de pantalla e ir directo al contenido. */}
+      <a href="#contenido" className="skip-link">
+        Saltar al contenido principal
+      </a>
       <Navbar tema={tema} onCambiarTema={alternarTema} />
-      <main>
+      {/* tabIndex=-1: no entra en el orden normal de Tab, pero permite que el
+          skip-link anterior mueva el foco del teclado hasta aquí al activarse. */}
+      <main id="contenido" tabIndex={-1}>
         <Routes>
           <Route path="/" element={<Inicio />} />
           <Route path="/gestion" element={<Gestion />} />
