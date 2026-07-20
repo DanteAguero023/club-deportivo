@@ -1,5 +1,12 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import Carrusel from '../components/Carrusel.jsx'
+
+const IMAGENES_CARRUSEL = [
+  { src: 'https://loremflickr.com/1200/500/soccer,team', alt: 'Equipo jugando un partido de fútbol' },
+  { src: 'https://loremflickr.com/1200/500/basketball,court', alt: 'Partido de básquetbol en una cancha techada' },
+  { src: 'https://loremflickr.com/1200/500/swimmer', alt: 'Persona nadando en una piscina' },
+]
 
 function contarSociosGuardados() {
   const guardado = localStorage.getItem('socios')
@@ -16,6 +23,8 @@ function Inicio() {
 
   return (
     <section className="hero">
+      <Carrusel imagenes={IMAGENES_CARRUSEL} />
+
       <h1>Club Deportivo Puerto Aysén</h1>
       <p className="hero-descripcion">
         Somos un club deportivo de Puerto Aysén con actividades para toda la
@@ -24,16 +33,29 @@ function Inicio() {
         socios de forma simple.
       </p>
 
-      <p className="hero-contador">
-        Socios inscritos actualmente: <strong>{totalSocios}</strong>
-      </p>
+      <div className="dashboard-grid">
+        <div className="dashboard-tile">
+          <span className="dashboard-tile-icono" aria-hidden="true">
+            👥
+          </span>
+          <span className="dashboard-tile-numero">{totalSocios}</span>
+          <span className="dashboard-tile-label">Socios inscritos</span>
+        </div>
 
-      <div className="hero-acciones">
-        <Link to="/gestion" className="boton boton-burdeo">
-          Ir a Gestión de socios
+        <Link to="/gestion" className="dashboard-tile dashboard-tile-link">
+          <span className="dashboard-tile-icono" aria-hidden="true">
+            📋
+          </span>
+          <span className="dashboard-tile-titulo">Gestión de socios</span>
+          <span className="dashboard-tile-descripcion">Inscribe, edita o da de baja a un socio</span>
         </Link>
-        <Link to="/actividades" className="boton boton-hunter">
-          Ver actividades
+
+        <Link to="/actividades" className="dashboard-tile dashboard-tile-link">
+          <span className="dashboard-tile-icono" aria-hidden="true">
+            🏅
+          </span>
+          <span className="dashboard-tile-titulo">Actividades</span>
+          <span className="dashboard-tile-descripcion">Revisa el catálogo y la disponibilidad</span>
         </Link>
       </div>
     </section>
