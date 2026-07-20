@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar.jsx'
+import SplashScreen from './components/SplashScreen.jsx'
 import Inicio from './pages/Inicio.jsx'
 import Gestion from './pages/Gestion.jsx'
 import DatosApi from './pages/DatosApi.jsx'
@@ -16,6 +17,9 @@ function leerTemaInicial() {
 
 function App() {
   const [tema, setTema] = useState(leerTemaInicial)
+  // sessionStorage (no LocalStorage): el splash debe reaparecer en una
+  // pestaña/visita nueva, pero no cada vez que el usuario recarga (F5).
+  const [mostrarSplash, setMostrarSplash] = useState(() => !sessionStorage.getItem('splashVisto'))
 
   // Aplica el tema al <html> (para que lo lean las variables CSS) y lo
   // guarda cada vez que cambia, para recordarlo en la próxima visita.
@@ -24,8 +28,24 @@ function App() {
     localStorage.setItem('tema', tema)
   }, [tema])
 
+  // Oculta el splash tras un momento breve y recuerda que ya se mostró
+  // en esta sesión. El cleanup cancela el timer si el componente se
+  // desmonta antes de que termine (evita un setState "huérfano").
+  useEffect(() => {
+    if (!mostrarSplash) return
+    const temporizador = setTimeout(() => {
+      setMostrarSplash(false)
+      sessionStorage.setItem('splashVisto', '1')
+    }, 1800)
+    return () => clearTimeout(temporizador)
+  }, [mostrarSplash])
+
   function alternarTema() {
     setTema((actual) => (actual === 'oscuro' ? 'claro' : 'oscuro'))
+  }
+
+  if (mostrarSplash) {
+    return <SplashScreen />
   }
 
   return (

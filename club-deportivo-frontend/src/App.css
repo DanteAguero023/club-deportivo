@@ -387,3 +387,47 @@
   text-decoration: none;
   display: inline-block;
 }
+
+.splash {
+  position: fixed;
+  inset: 0;
+  background: var(--burdeo);
+  color: var(--blanco);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 500;
+  animation: splash-desvanecer 0.4s ease 1.4s forwards;
+}
+
+.splash-contenido {
+  text-align: center;
+  animation: splash-entrada 0.5s ease;
+}
+
+.splash-contenido h1 {
+  color: var(--blanco);
+  margin-bottom: 8px;
+}
+
+.splash-contenido p {
+  opacity: 0.85;
+}
+
+@keyframes splash-entrada {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes splash-desvanecer {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
