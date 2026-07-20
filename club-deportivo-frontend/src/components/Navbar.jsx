@@ -51,10 +51,13 @@ function Navbar({ tema, onCambiarTema }) {
         </div>
       </nav>
 
+      {/* inert: cuando el drawer está cerrado, sus botones y links quedan
+          fuera del orden de Tab y ocultos para lectores de pantalla, aunque
+          sigan en el DOM (los necesitamos ahí para la transición de cierre). */}
       <div
         className={`drawer-overlay ${abierto ? 'drawer-overlay-visible' : ''}`}
         onClick={cerrarDrawer}
-        aria-hidden={!abierto}
+        inert={!abierto}
       >
         <div
           id="menu-drawer"
